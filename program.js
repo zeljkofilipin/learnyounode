@@ -1,15 +1,29 @@
 const http = require('http');
 
-var url = process.argv[2];
-var response = '';
+var count = 0;
+var responses = [];
 
-http.get(url, (res) => {
-  res.setEncoding('utf8');
-  res.on('data', (data) => {
-    response += data;
+function printResponses () {
+  responses.forEach( item => {
+    console.log(item);
   });
-  res.on('end', (data) => {
-    console.log(response.length);
-    console.log(response);
-  });
-}).on('error', console.error);
+}
+
+function getResponses (index) {
+  var url = process.argv[index + 2];
+  var response = '';
+  http.get(url, (res) => {
+    res.setEncoding('utf8');
+    res.on('data', (data) => {
+      response += data;
+    });
+    res.on('end', (data) => {
+      responses[index] = response;
+      console.log(responses[index]);
+      if (count === 3) printResponses();
+    });
+  }).on('error', console.error);
+}
+
+for (var i = 0; i < 3; i++)
+  getResponses(i);
