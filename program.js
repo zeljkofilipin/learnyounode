@@ -1,11 +1,8 @@
-const ls = require('./ls');
+const http = require('http');
 
-var directory = process.argv[2];
-var extension = process.argv[3];
+var url = process.argv[2];
 
-ls(directory, extension, (err, data) => {
-  if (err) console.log(err);
-  data.forEach((item, index, array) => {
-    console.log(item);
-  });
-});
+http.get(url, (res) => {
+  res.setEncoding('utf8')
+  res.on('data', console.log)
+}).on('error', console.error)
