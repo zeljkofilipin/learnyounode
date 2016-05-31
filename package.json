@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zeljkofilipin/learnyounode/issues"
   },
-  "homepage": "https://github.com/zeljkofilipin/learnyounode#readme"
+  "homepage": "https://github.com/zeljkofilipin/learnyounode#readme",
+  "dependencies": {
+    "through2-map": "^2.0.0"
+  }
 }

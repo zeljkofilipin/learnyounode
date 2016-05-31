@@ -1,11 +1,11 @@
-const fs   = require('fs');
 const http = require('http');
-
-const file = process.argv[3];
+const map  = require('through2-map');
 const port = process.argv[2];
 
 const server = http.createServer((request, response) => {
-  fs.createReadStream(file).pipe(response);
+  request.pipe(map( (chunk) => {
+    return chunk.toString().toUpperCase();
+  })).pipe(response);
 });
 
 server.listen(Number(port));
