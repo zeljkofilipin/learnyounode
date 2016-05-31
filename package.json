@@ -1,0 +1,19 @@
+{
+  "name": "learnyounode",
+  "version": "1.0.0",
+  "description": "- http://nodeschool.io/ - https://github.com/workshopper/learnyounode",
+  "main": "program.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeljkofilipin/learnyounode.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeljkofilipin/learnyounode/issues"
+  },
+  "homepage": "https://github.com/zeljkofilipin/learnyounode#readme"
+}
