@@ -16,5 +16,4 @@ server.on('error', (err) => {
   throw err;
 });
 
-server.listen(port, () => {
-});
+server.listen(port);
