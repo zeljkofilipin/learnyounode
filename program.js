@@ -1,19 +1,11 @@
-const net = require('net');
+const fs   = require('fs');
+const http = require('http');
+
+const file = process.argv[3];
 const port = process.argv[2];
 
-const server = net.createServer((c) => {
-  var time    = new Date();
-  var year    = time.getFullYear();
-  var month   = time.getMonth() + 1;
-  var date    = time.getDate();
-  var hours   = time.getHours();
-  var minutes = time.getMinutes();
-  var endOfLine = require('os').EOL;
-  c.end(`${year}-0${month}-${date} ${hours}:${minutes}${endOfLine}`);
+const server = http.createServer((request, response) => {
+  fs.createReadStream(file).pipe(response);
 });
 
-server.on('error', (err) => {
-  throw err;
-});
-
-server.listen(port);
+server.listen(Number(port));
