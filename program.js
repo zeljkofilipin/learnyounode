@@ -1,29 +1,20 @@
-const http = require('http');
+const net = require('net');
+const port = process.argv[2];
 
-var count = 0;
-var responses = [];
+const server = net.createServer((c) => {
+  var time    = new Date();
+  var year    = time.getFullYear();
+  var month   = time.getMonth() + 1;
+  var date    = time.getDate();
+  var hours   = time.getHours();
+  var minutes = time.getMinutes();
+  var endOfLine = require('os').EOL;
+  c.end(`${year}-0${month}-${date} ${hours}:${minutes}${endOfLine}`);
+});
 
-function printResponses () {
-  responses.forEach( item => {
-    console.log(item);
-  });
-}
+server.on('error', (err) => {
+  throw err;
+});
 
-function getResponses (index) {
-  var url = process.argv[index + 2];
-  var response = '';
-  http.get(url, (res) => {
-    res.setEncoding('utf8');
-    res.on('data', (data) => {
-      response += data;
-    });
-    res.on('end', (data) => {
-      responses[index] = response;
-      console.log(responses[index]);
-      if (count === 3) printResponses();
-    });
-  }).on('error', console.error);
-}
-
-for (var i = 0; i < 3; i++)
-  getResponses(i);
+server.listen(port, () => {
+});
